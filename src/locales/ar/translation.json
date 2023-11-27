@@ -1,4 +1,10 @@
 {
   "welcome": "مرحبًا!",
-  "helloButton": "قل مرحبًا"
+  "helloButton": "قل مرحبًا",
+  "apple": "تفاحة",
+  "meta": "ميتا",
+  "netflix": "نيتفليكس",
+  "google": "جوجل",
+  "twitter": "تويتر",
+  "tesla": "تسلا"
 }

@@ -1,4 +1,10 @@
 {
     "welcome": "Welcome to App",
-    "helloButton": "Hello, Material-UI"
+    "helloButton": "Hello, Material-UI",
+    "apple": "Apple",
+    "meta": "Meta",
+    "netflix": "Netflix",
+    "google": "Google",
+    "twitter": "Twitter",
+    "tesla": "Tesla"
   }
