@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next';
 import './App.css';
 
 import i18n from './i18n';
-import Header from './components/Header';
-import NewsList from './components/NewsList';
-import ToggleTheme from './components/ToggleTheme';
+import Header from './components/Header/Header';
+import NewsList from './components/NewsList/NewsList';
+import ToggleTheme from './components/ToggleTheme/ToggleTheme';
 
 const App: React.FC = () => {
   const { t } = useTranslation();

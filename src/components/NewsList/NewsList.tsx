@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import NewsCard from "./NewsCard";
-import TabComponent from "./TabComponent";
-import Loader from "./Loader";
-import { styled } from "@mui/system";
-import { Theme } from "@mui/system";
+
+import NewsCard from "../NewsCard/NewsCard";
+import Loader from "../Loader";
+
+import { StyledNewsList, LoadMoreButton } from './NewsListStyles'; 
 
 interface NewsListProps {
   language: string;
@@ -20,38 +20,11 @@ interface Article {
   url: string;
 }
 
-const StyledNewsList = styled("div")(({ theme }: { theme: Theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  marginTop: theme.spacing(4),
-  padding: theme.spacing(2),
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius,
-}));
-
-const LoadMoreButton = styled("button")(({ theme }: { theme: Theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-  color: theme.palette.primary.contrastText,
-  padding: theme.spacing(1, 2),
-  border: "none",
-  borderRadius: theme.shape.borderRadius,
-  cursor: "pointer",
-  marginTop: theme.spacing(2),
-  "&:hover": {
-    backgroundColor: theme.palette.primary.dark,
-  },
-}));
-
 const NewsList: React.FC<NewsListProps> = ({ language,selectedTab,setSelectedTab  }) => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
-
- 
-
-
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
@@ -97,7 +70,7 @@ const NewsList: React.FC<NewsListProps> = ({ language,selectedTab,setSelectedTab
   useEffect(() => {
     setIsLoading(true)
     fetchData(selectedTab, page);
-  }, [selectedTab, page]); // Fetch data when the tab or page changes
+  }, [selectedTab, page]); 
 
   return (
     <StyledNewsList>
