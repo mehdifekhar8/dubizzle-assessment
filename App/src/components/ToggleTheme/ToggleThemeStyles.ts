@@ -5,15 +5,18 @@ export const CustomSwitch = styled(Switch)(({ theme }) => ({
   width: 60,
   height: 40,
   padding: 4,
-  "& .MuiSwitch-switchBase": {
-    "&.Mui-checked": {
-      marginRight: "0",
+  ".MuiSwitch-track": {
+    backgroundColor: "#0E477E",
+  },
+  '& .MuiSwitch-switchBase': {
+  
+    '&.Mui-checked': {
+      marginRight: '0',
       color: theme.palette.common.white,
-      "& + .MuiSwitch-track": {
-        backgroundColor: theme.palette.primary.main,
-        opacity: 1,
+      '& + .MuiSwitch-track': {
+        backgroundColor: "#0E477E",
       },
-      "& .MuiSwitch-thumb": {
+      '& .MuiSwitch-thumb': {
         color: theme.palette.common.white,
       },
     },

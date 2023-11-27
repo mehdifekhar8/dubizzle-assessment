@@ -4,8 +4,6 @@ interface StyledHeaderProps {
   isArabic: boolean;
 }
 
-
-
 export const StyledHeader = styled(Box)<StyledHeaderProps>(({ theme, isArabic }) => ({
   display: 'flex',
   justifyContent: 'space-between',

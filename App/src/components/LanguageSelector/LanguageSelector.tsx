@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Tooltip } from "@mui/material";
-
+import { Switch, Tooltip } from "@mui/material";
 import { CustomSwitch } from "./LanguageSelectorStyles";
+import { useTranslation } from "react-i18next";
 
 interface LanguageSelectorProps {
   onLanguageChange: (language: string) => void;
@@ -10,23 +10,28 @@ interface LanguageSelectorProps {
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   onLanguageChange,
 }) => {
-  const [isArabic, setArabic] = useState<boolean>(false);
-
+  const [isArabic, setIsArabic] = useState<boolean>(false);
+  const {t}= useTranslation()
   const toggleLanguage = () => {
-    setArabic(!isArabic);
-    const language = isArabic ? "en" : "ar";
+    const switchedToArabic = !isArabic;
+    setIsArabic(switchedToArabic);
+    const language = switchedToArabic ? "ar" : "en";
     onLanguageChange(language);
   };
 
+  const languageDisplay = !isArabic ? "العربية" : "English";
+
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      <Tooltip title={`Switch to ${isArabic ? "English" : "Arabic"}`} arrow>
+      <Tooltip title={`${t("switchTo")} ${languageDisplay}`} arrow>
         <CustomSwitch
           checked={isArabic}
           onChange={toggleLanguage}
-          color="default"
+          inputProps={{ "aria-label": `${t("switchTo")} ${languageDisplay}` }}
+         
         />
       </Tooltip>
+      <div style={{ marginLeft: 8 }}>{t("languages")}</div>
     </div>
   );
 };

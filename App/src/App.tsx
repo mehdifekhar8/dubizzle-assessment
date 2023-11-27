@@ -32,6 +32,7 @@ const App: React.FC = () => {
     palette: {
       mode: isDarkMode ? 'dark' : 'light',
     },
+    
   });
 
   return (
