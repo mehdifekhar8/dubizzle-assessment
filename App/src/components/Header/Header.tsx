@@ -6,6 +6,7 @@ import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import TabComponent from "../Tab/TabComponent";
 
 import { StyledHeader } from "./HeaderStyles";
+import { useTranslation } from "react-i18next";
 
 interface HeaderProps {
   welcomeText: string;
@@ -24,9 +25,14 @@ const Header: React.FC<HeaderProps> = ({
   isDarkMode,
   onThemeToggle,
 }) => {
+  const { i18n } = useTranslation(); // Use useTranslation hook
+  const isArabic = i18n.language === 'ar';
+
   return (
-    <StyledHeader>
-      <Typography variant="h4">{welcomeText}</Typography>
+    <StyledHeader isArabic={isArabic}>
+      <Typography variant="h4" dir={isArabic ? "rtl" : "ltr"}>
+        {welcomeText}
+      </Typography>
       <TabComponent selectedTab={selectedTab} onTabChange={onTabChange} />
       <Box display="flex" alignItems="center">
         <ToggleTheme isDarkMode={isDarkMode} onThemeToggle={onThemeToggle} />
