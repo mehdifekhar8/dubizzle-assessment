@@ -36,7 +36,7 @@ const NewsList: React.FC<NewsListProps> = ({ language,selectedTab,setSelectedTab
 
   const fetchData = async (tab: string, currentPage: number) => {
     try {
-      const response = await axios.get("https://newsapi.org/v2/everything", {
+      const response = await axios.get("http://localhost:5000/get_news", {
         params: {
           q: tab,
           from: new Date(
@@ -44,7 +44,6 @@ const NewsList: React.FC<NewsListProps> = ({ language,selectedTab,setSelectedTab
           ).toISOString(),
           sortBy: "publishedAt",
           language,
-          apiKey: "930bfac33ae7429f8ec90ad080be32f3",
           page: currentPage,
           pageSize: 5,
         },
@@ -70,7 +69,7 @@ const NewsList: React.FC<NewsListProps> = ({ language,selectedTab,setSelectedTab
   useEffect(() => {
     setIsLoading(true)
     fetchData(selectedTab, page);
-  }, [selectedTab, page]); 
+  }, [selectedTab, page,language]); 
 
   return (
     <StyledNewsList>
