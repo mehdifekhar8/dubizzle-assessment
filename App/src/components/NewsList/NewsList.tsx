@@ -4,13 +4,13 @@ import axios from "axios";
 import NewsCard from "../NewsCard/NewsCard";
 import Loader from "../Loader";
 
-import { StyledNewsList, LoadMoreButton } from './NewsListStyles'; 
+import { StyledNewsList, LoadMoreButton } from "./NewsListStyles";
+import { useTranslation } from "react-i18next";
 
 interface NewsListProps {
   language: string;
   selectedTab: string;
-  setSelectedTab:(tab:string)=>void
-
+  setSelectedTab: (tab: string) => void;
 }
 
 interface Article {
@@ -20,12 +20,17 @@ interface Article {
   url: string;
 }
 
-const NewsList: React.FC<NewsListProps> = ({ language,selectedTab,setSelectedTab  }) => {
+const NewsList: React.FC<NewsListProps> = ({
+  language,
+  selectedTab,
+  setSelectedTab,
+}) => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
-
+  const [error, setError] = useState("");
+  const { t } = useTranslation();
   const handleLoadMore = () => {
     const nextPage = page + 1;
     if (nextPage <= totalPages) {
@@ -61,15 +66,16 @@ const NewsList: React.FC<NewsListProps> = ({ language,selectedTab,setSelectedTab
       setTotalPages(response.data.totalResults);
     } catch (error) {
       console.error("Error fetching news:", error);
+      setError(t("error"));
     } finally {
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     fetchData(selectedTab, page);
-  }, [selectedTab, page,language]); 
+  }, [selectedTab, page, language]);
 
   return (
     <StyledNewsList>
@@ -77,6 +83,7 @@ const NewsList: React.FC<NewsListProps> = ({ language,selectedTab,setSelectedTab
         <Loader />
       ) : (
         <div className="news-list">
+          {error && <p className="error-message">{error}</p>}
           {articles.map((article, index) => (
             <NewsCard
               key={index}

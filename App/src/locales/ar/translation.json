@@ -8,6 +8,12 @@
   "twitter": "تويتر",
   "tesla": "تسلا",
   "languages": "العربية",
-  "switchTo": "Switch to"
+  "switchTo": "Switch to",
+  "readMore": "اقرأ المزيد",
+  "couldNotLoadImage": "تعذر تحميل الصورة",
+  "error": "حدث خطأ أثناء جلب الأخبار. الرجاء المحاولة مرة أخرى لاحقًا."
+
+
+
 
 }

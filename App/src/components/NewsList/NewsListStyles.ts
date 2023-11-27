@@ -5,10 +5,10 @@ export const StyledNewsList = styled("div")(({ theme }: { theme: Theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  marginTop: theme.spacing(4),
   padding: theme.spacing(2),
   backgroundColor: theme.palette.background.paper,
   borderRadius: theme.shape.borderRadius,
+
 }));
 
 export const LoadMoreButton = styled("button")(

@@ -8,7 +8,12 @@
     "twitter": "Twitter",
     "tesla": "Tesla",
     "languages": "English",
-    "switchTo": "Switch to"
+    "switchTo": "Switch to",
+    "readMore": "Read More",
+    "couldNotLoadImage": "Could not load image",
+    "error": "Error fetching news. Please try again later."
+
+
 
 
   }

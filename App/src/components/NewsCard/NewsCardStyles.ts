@@ -9,6 +9,7 @@ export const StyledNewsCard = styled("div")(({ theme }: { theme: Theme }) => ({
   overflow: "hidden",
   maxWidth: 800,
   marginBottom: theme.spacing(2),
+  maxHeight:"350px"
 }));
 
 export const StyledImage = styled("img")(({ theme }: { theme: Theme }) => ({
@@ -27,6 +28,8 @@ export const StyledContent = styled("div")(({ theme }: { theme: Theme }) => ({
 export const StyledTitle = styled("h2")(({ theme }: { theme: Theme }) => ({
   fontSize: "1.2rem",
   marginBottom: theme.spacing(1),
+  color: theme.palette.text.primary,
+
 }));
 
 export const StyledDescription = styled("p")(({ theme }: { theme: Theme }) => ({

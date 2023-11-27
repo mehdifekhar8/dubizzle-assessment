@@ -8,6 +8,7 @@ import {
   StyledDescription,
   StyledLink,
 } from "./NewsCardStyles";
+import { useTranslation } from "react-i18next";
 
 interface NewsCardProps {
   title: string;
@@ -23,7 +24,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
   url,
 }) => {
   const [imageError, setImageError] = useState<boolean>(false);
-
+  const {t} = useTranslation()
   const handleError = () => {
     setImageError(true);
   };
@@ -37,13 +38,13 @@ const NewsCard: React.FC<NewsCardProps> = ({
           style={{ width: "100%", height: "auto", borderRadius: "8px" }}
         />
       ) : (
-        <div className="image-error">Could not load image</div>
+        <div className="image-error"> {t("couldNotLoadImage")}</div>
       )}
       <StyledContent>
         <StyledTitle>{title}</StyledTitle>
         <StyledDescription>{description}</StyledDescription>
         <StyledLink href={url} target="_blank" rel="noopener noreferrer">
-          Read more
+          {t("readMore")}
         </StyledLink>
       </StyledContent>
     </StyledNewsCard>
