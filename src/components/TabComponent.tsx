@@ -7,16 +7,26 @@ interface TabComponentProps {
   selectedTab: string;
   onTabChange: (tab: string) => void;
 }
+interface StyledChipProps {
+    selected: boolean;
+  }
+const StyledChip = styled(Chip)<StyledChipProps>(({ theme, selected }) => ({
+    margin: theme.spacing(1),
+    cursor: 'pointer',
+    backgroundColor: selected ? theme.palette.primary.main : theme.palette.success.main,
+    color: selected ? theme.palette.common.white : theme.palette.text.primary,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.common.white,
+    },
+  }));
 
-// Add your custom styles here
-const StyledChip = styled(Chip)(({ theme }) => ({
-  margin: theme.spacing(1),
-  cursor: 'pointer',
-  '&:hover': {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
-  },
-}));
+const StyledBox = styled(Box)({
+  display: 'flex',
+  justifyContent: 'center',
+  flexWrap: 'wrap',
+  gap: 1,
+});
 
 const TabComponent: React.FC<TabComponentProps> = ({ selectedTab, onTabChange }) => {
   const { t } = useTranslation();
@@ -28,16 +38,17 @@ const TabComponent: React.FC<TabComponentProps> = ({ selectedTab, onTabChange })
   const tabs = ['apple', 'meta', 'netflix', 'google', 'twitter', 'tesla'];
 
   return (
-    <Box display="flex" justifyContent="center" flexWrap="wrap" gap={1}>
+    <StyledBox>
       {tabs.map((tab) => (
-        <StyledChip
-          key={tab}
-          label={t(tab)}
-          onClick={() => handleTabChange(tab)}
-          color={selectedTab === tab ? 'primary' : 'default'}
-        />
+      <StyledChip
+      key={tab}
+      label={t(tab)}
+      onClick={() => handleTabChange(tab)}
+      color={selectedTab === tab ? 'primary' : 'default'}
+      selected={selectedTab === tab}
+    />
       ))}
-    </Box>
+    </StyledBox>
   );
 };
 

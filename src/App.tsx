@@ -7,12 +7,13 @@ import './App.css';
 import i18n from './i18n';
 import Header from './components/Header';
 import NewsList from './components/NewsList';
-
+import ToggleTheme from './components/ToggleTheme';
 
 const App: React.FC = () => {
   const { t } = useTranslation();
   const [isRtl, setIsRtl] = useState<boolean>(false);
   const [selectedTab, setSelectedTab] = useState<string>('apple');
+  const [isDarkMode, setDarkMode] = useState<boolean>(false);
 
   const handleLanguageChange = (language: string) => {
     i18n.changeLanguage(language);
@@ -23,16 +24,29 @@ const App: React.FC = () => {
     setSelectedTab(tab);
   };
 
+  const handleThemeToggle = () => {
+    setDarkMode(!isDarkMode);
+  };
+
   const theme = createTheme({
     direction: isRtl ? 'rtl' : 'ltr',
-    
+    palette: {
+      mode: isDarkMode ? 'dark' : 'light',
+    },
   });
-  
+
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <Header welcomeText={t('welcome')} onLanguageChange={handleLanguageChange} onTabChange={handleTabChange} selectedTab={selectedTab}  />
-        <NewsList language={i18n.language} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+        <Header
+          welcomeText={t('welcome')}
+          onLanguageChange={handleLanguageChange}
+          onTabChange={handleTabChange}
+          selectedTab={selectedTab}
+          onThemeToggle={handleThemeToggle}
+          isDarkMode={isDarkMode}
+        />
+        <NewsList language={i18n.language} selectedTab={selectedTab} setSelectedTab={setSelectedTab}/>
       
       </div>
     </ThemeProvider>
