@@ -16,6 +16,7 @@
     "@types/react-dom": "^18.2.17",
     "axios": "^1.6.2",
     "i18next": "^23.7.6",
+    "lodash.debounce": "^4.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^13.5.0",
@@ -32,7 +33,7 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest" 
+      "react-app/jest"
     ]
   },
   "browserslist": {
@@ -48,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.9",
     "eslint": "^8.54.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-react": "^7.33.2"

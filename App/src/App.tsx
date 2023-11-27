@@ -46,7 +46,7 @@ const App: React.FC = () => {
           onThemeToggle={handleThemeToggle}
           isDarkMode={isDarkMode}
         />
-        <NewsList language={i18n.language} selectedTab={selectedTab} setSelectedTab={setSelectedTab}/>
+        <NewsList language={i18n.language} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       
       </div>
     </ThemeProvider>

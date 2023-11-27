@@ -36,6 +36,8 @@ const NewsCard: React.FC<NewsCardProps> = ({
           alt={title}
           onError={handleError}
           style={{ width: "100%", height: "auto", borderRadius: "8px" }}
+          loading="lazy"
+
         />
       ) : (
         <div className="image-error"> {t("couldNotLoadImage")}</div>

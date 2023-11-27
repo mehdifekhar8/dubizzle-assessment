@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import debounce from 'lodash.debounce';
 
 import NewsCard from "../NewsCard/NewsCard";
 import Loader from "../Loader";
@@ -31,6 +32,7 @@ const NewsList: React.FC<NewsListProps> = ({
   const [totalPages, setTotalPages] = useState<number>(1);
   const [error, setError] = useState("");
   const { t } = useTranslation();
+
   const handleLoadMore = () => {
     const nextPage = page + 1;
     if (nextPage <= totalPages) {
@@ -38,6 +40,8 @@ const NewsList: React.FC<NewsListProps> = ({
       fetchData(selectedTab, nextPage);
     }
   };
+  const debouncedLoadMore = debounce(handleLoadMore, 300);
+
 
   const fetchData = async (tab: string, currentPage: number) => {
     try {
@@ -76,6 +80,8 @@ const NewsList: React.FC<NewsListProps> = ({
     setIsLoading(true);
     fetchData(selectedTab, page);
   }, [selectedTab, page, language]);
+  
+  const MemoizedNewsCard = React.memo(NewsCard);
 
   return (
     <StyledNewsList>
@@ -85,7 +91,7 @@ const NewsList: React.FC<NewsListProps> = ({
         <div className="news-list">
           {error && <p className="error-message">{error}</p>}
           {articles.map((article, index) => (
-            <NewsCard
+            <MemoizedNewsCard
               key={index}
               title={article.title}
               description={article.description}
@@ -94,7 +100,7 @@ const NewsList: React.FC<NewsListProps> = ({
             />
           ))}
           {page < totalPages && (
-            <LoadMoreButton onClick={handleLoadMore}>Load More</LoadMoreButton>
+            <LoadMoreButton onClick={debouncedLoadMore}>Load More</LoadMoreButton>
           )}
         </div>
       )}
