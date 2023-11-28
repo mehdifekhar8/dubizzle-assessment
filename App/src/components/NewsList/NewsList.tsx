@@ -4,6 +4,7 @@ import debounce from 'lodash.debounce';
 
 import NewsCard from "../NewsCard/NewsCard";
 import Loader from "../Loader";
+import { ITEMS_PER_PAGE } from "../../constants/constants";
 
 import { StyledNewsList, LoadMoreButton } from "./NewsListStyles";
 import { useTranslation } from "react-i18next";
@@ -25,12 +26,13 @@ const NewsList: React.FC<NewsListProps> = ({
   language,
   selectedTab,
 }) => {
+  const {t}=useTranslation()
   const [articles, setArticles] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [error, setError] = useState("");
-  const { t } = useTranslation();
+  const MemoizedNewsCard = React.memo(NewsCard);
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
@@ -49,7 +51,7 @@ const NewsList: React.FC<NewsListProps> = ({
           q: tab,
           language,
           page: currentPage,
-          pageSize: 5,
+          pageSize: ITEMS_PER_PAGE,
         },
       });
 
@@ -76,7 +78,6 @@ const NewsList: React.FC<NewsListProps> = ({
     fetchData(selectedTab, page);
   }, [selectedTab, page, language]);
   
-  const MemoizedNewsCard = React.memo(NewsCard);
 
   return (
     <StyledNewsList>
@@ -94,8 +95,8 @@ const NewsList: React.FC<NewsListProps> = ({
               url={article.url}
             />
           ))}
-          {page < totalPages && (
-            <LoadMoreButton onClick={debouncedLoadMore}>Load More</LoadMoreButton>
+          {page < totalPages && totalPages > ITEMS_PER_PAGE &&  (
+            <LoadMoreButton onClick={debouncedLoadMore}>{t("loadMore")}</LoadMoreButton>
           )}
         </div>
       )}
