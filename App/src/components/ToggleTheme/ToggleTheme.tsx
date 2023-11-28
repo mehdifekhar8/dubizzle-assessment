@@ -18,8 +18,8 @@ const ToggleTheme: React.FC<ToggleThemeProps> = ({
       <CustomSwitch
         checked={isDarkMode}
         onChange={onThemeToggle}
-        icon={<Brightness4Icon />}
-        checkedIcon={<Brightness7Icon />}
+        icon={ <Brightness7Icon />}
+        checkedIcon={<Brightness4Icon />}
         color="default"
       />
     </Tooltip>
