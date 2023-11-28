@@ -9,6 +9,7 @@ import {
   StyledDescription,
   StyledLink,
 } from "./NewsCardStyles";
+import Loader from "../Loader";
 
 interface NewsCardProps {
   title: string;
@@ -23,23 +24,38 @@ const NewsCard: React.FC<NewsCardProps> = ({
   imageUrl,
   url,
 }) => {
+  const [imageLoading, setImageLoading] = useState<boolean>(true);
   const [imageError, setImageError] = useState<boolean>(false);
-  const {t} = useTranslation()
+  const { t } = useTranslation();
+
+  const handleLoad = () => {
+    setImageLoading(false);
+  };
+
   const handleError = () => {
     setImageError(true);
+    setImageLoading(false);
   };
+
   return (
     <StyledNewsCard>
-      {!imageError ? (
+      {imageLoading && <Loader width="100%" height="auto" ></Loader>}
+      {!imageError && (
         <StyledImage
           src={imageUrl}
           alt={title}
+          onLoad={handleLoad}
           onError={handleError}
-          style={{ width: "100%", height: "auto", borderRadius: "8px" }}
+          style={{
+            display: imageLoading ? "none" : "block",
+            width:"300px",
+            height: "auto",
+            borderRadius: "8px",
+          }}
           loading="lazy"
-
         />
-      ) : (
+      )}
+      {imageError && (
         <div className="image-error"> {t("couldNotLoadImage")}</div>
       )}
       <StyledContent>

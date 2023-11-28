@@ -23,6 +23,8 @@ export const StyledImage = styled("img")(({ theme }: { theme: Theme }) => ({
 
 export const StyledContent = styled("div")(({ theme }: { theme: Theme }) => ({
   padding: theme.spacing(2),
+  width:"400px"
+
 }));
 
 export const StyledTitle = styled("h2")(({ theme }: { theme: Theme }) => ({

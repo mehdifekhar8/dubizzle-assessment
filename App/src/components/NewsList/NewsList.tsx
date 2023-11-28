@@ -82,7 +82,7 @@ const NewsList: React.FC<NewsListProps> = ({
   return (
     <StyledNewsList>
       {isLoading ? (
-        <Loader />
+        <Loader  width="100%" height="auto" />
       ) : (
         <div className="news-list">
           {error && <p className="error-message">{error}</p>}

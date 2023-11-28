@@ -1,13 +1,19 @@
 import React from 'react';
 import { CircularProgress, Box } from '@mui/material';
 
-const Loader: React.FC = () => {
+interface LoaderProps {
+  width: string;
+  height: string;
+}
+
+const Loader: React.FC<LoaderProps> = ({ width, height }) => {
   return (
     <Box
       display="flex"
       alignItems="center"
       justifyContent="center"
-      height="100vh"
+      width={width}
+      height={height}
     >
       <CircularProgress />
     </Box>
