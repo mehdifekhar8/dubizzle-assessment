@@ -76,18 +76,17 @@ const NewsList: React.FC<NewsListProps> = ({
     setIsLoading(true);
     fetchData(selectedTab, page);
   }, [ page, language]);
-  
+
   useEffect(() => {
     setIsLoading(true);
-    fetchData(selectedTab, page);
     setPage(1)
+    fetchData(selectedTab, 1);
+   
   }, [selectedTab]);
   return (
     <StyledNewsList>
-      {isLoading ? (
-        <Loader  width="100%" height="auto" />
-      ) : (
-        <div className="news-list">
+      
+      <div className="news-list">
           {error && <p className="error-message">{error}</p>}
           {articles.map((article, index) => (
             <NewsCard
@@ -98,11 +97,13 @@ const NewsList: React.FC<NewsListProps> = ({
               url={article.url}
             />
           ))}
+          {isLoading && (
+        <Loader  width="100%" height="auto" />
+      ) }
           {page < totalPages && totalPages > ITEMS_PER_PAGE &&  (
             <LoadMoreButton onClick={debouncedLoadMore}>{t("loadMore")}</LoadMoreButton>
           )}
         </div>
-      )}
     </StyledNewsList>
   );
 };

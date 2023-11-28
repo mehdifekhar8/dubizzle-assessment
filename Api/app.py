@@ -6,7 +6,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-newsapi = NewsApiClient(api_key='fb22216c507c4d17a4e728d4a7fdd02d')
+newsapi = NewsApiClient(api_key='eac6d5e5d2c743b7b83619a40c22864c')
 
 @app.route('/get_news', methods=['GET'])
 def get_news():
