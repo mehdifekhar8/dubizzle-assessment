@@ -32,7 +32,6 @@ const NewsList: React.FC<NewsListProps> = ({
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [error, setError] = useState("");
-  const MemoizedNewsCard = React.memo(NewsCard);
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
@@ -76,9 +75,13 @@ const NewsList: React.FC<NewsListProps> = ({
   useEffect(() => {
     setIsLoading(true);
     fetchData(selectedTab, page);
-  }, [selectedTab, page, language]);
+  }, [ page, language]);
   
-
+  useEffect(() => {
+    setIsLoading(true);
+    fetchData(selectedTab, page);
+    setPage(1)
+  }, [selectedTab]);
   return (
     <StyledNewsList>
       {isLoading ? (
@@ -87,7 +90,7 @@ const NewsList: React.FC<NewsListProps> = ({
         <div className="news-list">
           {error && <p className="error-message">{error}</p>}
           {articles.map((article, index) => (
-            <MemoizedNewsCard
+            <NewsCard
               key={index}
               title={article.title}
               description={article.description}

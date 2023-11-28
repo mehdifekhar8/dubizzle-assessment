@@ -26,7 +26,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 }) => {
   const [imageLoading, setImageLoading] = useState<boolean>(true);
   const [imageError, setImageError] = useState<boolean>(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const handleLoad = () => {
     setImageLoading(false);
@@ -38,26 +38,22 @@ const NewsCard: React.FC<NewsCardProps> = ({
   };
 
   return (
-    <StyledNewsCard>
-      {imageLoading && <Loader width="100%" height="auto" ></Loader>}
-      {!imageError && (
+    <StyledNewsCard dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
+      {imageLoading && <Loader width="100%" height="auto" />}
+      {!imageError &&( // Show the image only when it has loaded
         <StyledImage
           src={imageUrl}
           alt={title}
           onLoad={handleLoad}
           onError={handleError}
           style={{
-            display: imageLoading ? "none" : "block",
-            width:"300px",
+            width: "300px",
             height: "auto",
             borderRadius: "8px",
           }}
-          loading="lazy"
         />
       )}
-      {imageError && (
-        <div className="image-error"> {t("couldNotLoadImage")}</div>
-      )}
+      {imageError && <div className="image-error">{t("couldNotLoadImage")}</div>}
       <StyledContent>
         <StyledTitle>{title}</StyledTitle>
         <StyledDescription>{description}</StyledDescription>
