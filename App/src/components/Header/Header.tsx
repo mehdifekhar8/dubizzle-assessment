@@ -1,12 +1,12 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 import LanguageSelector from "../LanguageSelector/LanguageSelector";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import TabComponent from "../Tab/TabComponent";
-
 import { StyledHeader } from "./HeaderStyles";
-import { useTranslation } from "react-i18next";
+
 
 interface HeaderProps {
   welcomeText: string;

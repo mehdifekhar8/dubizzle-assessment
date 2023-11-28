@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import debounce from 'lodash.debounce';
+import { useTranslation } from "react-i18next";
 
 import NewsCard from "../NewsCard/NewsCard";
 import Loader from "../Loader";
 import { ITEMS_PER_PAGE } from "../../constants/constants";
 
 import { StyledNewsList, LoadMoreButton } from "./NewsListStyles";
-import { useTranslation } from "react-i18next";
 
 interface NewsListProps {
   language: string;

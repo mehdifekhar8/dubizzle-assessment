@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   StyledNewsCard,
@@ -8,7 +9,6 @@ import {
   StyledDescription,
   StyledLink,
 } from "./NewsCardStyles";
-import { useTranslation } from "react-i18next";
 
 interface NewsCardProps {
   title: string;

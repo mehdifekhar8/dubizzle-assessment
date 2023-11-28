@@ -1,12 +1,13 @@
-// App.tsx
 import React, { useState } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import './App.css';
 
 import i18n from './i18n';
 import Header from './components/Header/Header';
 import NewsList from './components/NewsList/NewsList';
+
+import './App.css';
+
 
 const App: React.FC = () => {
   const { t } = useTranslation();

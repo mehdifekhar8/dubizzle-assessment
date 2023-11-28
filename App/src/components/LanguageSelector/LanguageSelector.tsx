@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import {  Tooltip } from "@mui/material";
-import { CustomSwitch } from "./LanguageSelectorStyles";
 import { useTranslation } from "react-i18next";
+
+import { CustomSwitch } from "./LanguageSelectorStyles";
 
 interface LanguageSelectorProps {
   onLanguageChange: (language: string) => void;
