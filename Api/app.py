@@ -15,6 +15,8 @@ def get_news():
     seven_days_ago = datetime.now() - timedelta(days=7)
     # Format the date as a string in the required format
     from_date = seven_days_ago.strftime('%Y-%m-%d')
+    # Specify the pageSize parameter for the number of elements to retrieve
+    page_size = int(request.args.get('pageSize', 5))
     # Get all articles based on user query
     all_articles = newsapi.get_everything(q=user_query,
                                           sort_by='publishedAt',
@@ -22,10 +24,11 @@ def get_news():
                                           from_param=from_date,
                                           to=datetime.now().strftime('%Y-%m-%d'),
                                           page=int(request.args.get('page', 1)),
+                                          page_size=page_size
                                     )
 
     # Extract relevant information from the articles
-    articles = all_articles['articles'][:10]
+    articles = all_articles['articles']
     total_results = all_articles['totalResults']
 
     # Combine and return the results

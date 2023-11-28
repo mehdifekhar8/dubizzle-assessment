@@ -24,7 +24,6 @@ interface Article {
 const NewsList: React.FC<NewsListProps> = ({
   language,
   selectedTab,
-  setSelectedTab,
 }) => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -48,10 +47,6 @@ const NewsList: React.FC<NewsListProps> = ({
       const response = await axios.get("http://localhost:5000/get_news", {
         params: {
           q: tab,
-          from: new Date(
-            new Date().getTime() - 7 * 24 * 60 * 60 * 1000
-          ).toISOString(),
-          sortBy: "publishedAt",
           language,
           page: currentPage,
           pageSize: 5,
@@ -109,5 +104,4 @@ const NewsList: React.FC<NewsListProps> = ({
 };
 
 export default NewsList;
-//79ac97d3553b4fa48d3078ae5ce9ebf4
-//224f02634f4e487c847e4d45f295ddfc
+

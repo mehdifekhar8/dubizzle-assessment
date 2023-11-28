@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Switch, Tooltip } from "@mui/material";
+import {  Tooltip } from "@mui/material";
 import { CustomSwitch } from "./LanguageSelectorStyles";
 import { useTranslation } from "react-i18next";
 
