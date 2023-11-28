@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -37,10 +37,11 @@ const NewsCard: React.FC<NewsCardProps> = ({
     setImageLoading(false);
   };
 
+
   return (
     <StyledNewsCard dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
       {imageLoading && <Loader width="100%" height="auto" />}
-      {!imageError &&( // Show the image only when it has loaded
+      {!imageError &&( 
         <StyledImage
           src={imageUrl}
           alt={title}

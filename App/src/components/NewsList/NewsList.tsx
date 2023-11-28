@@ -82,7 +82,7 @@ const NewsList: React.FC<NewsListProps> = ({
     setPage(1)
     fetchData(selectedTab, 1);
    
-  }, [selectedTab]);
+  }, [selectedTab,language]);
   return (
     <StyledNewsList>
       
