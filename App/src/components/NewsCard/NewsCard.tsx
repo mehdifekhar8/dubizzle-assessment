@@ -37,6 +37,9 @@ const NewsCard: React.FC<NewsCardProps> = ({
     setImageLoading(false);
   };
 
+  // For fixing a bug where the error keeps displaying
+  useEffect(() => setImageError(false),[title]);
+
 
   return (
     <StyledNewsCard dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
