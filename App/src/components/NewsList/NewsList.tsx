@@ -79,6 +79,7 @@ const NewsList: React.FC<NewsListProps> = ({
 
   useEffect(() => {
     setIsLoading(true);
+    setArticles([])
     setPage(1)
     fetchData(selectedTab, 1);
    
